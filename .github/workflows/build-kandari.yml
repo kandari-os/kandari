@@ -154,11 +154,11 @@ jobs:
           - edition: kde
             containerfile: Containerfile.NVIDIA
             image_name: kde-nvidia
-            base_name: ghcr.io/kandari-os/kandari-kde
+            base_name: ghcr.io/kandari-os/kde
           - edition: gnome
             containerfile: Containerfile.NVIDIA
             image_name: gnome-nvidia
-            base_name: ghcr.io/kandari-os/kandari-gnome
+            base_name: ghcr.io/kandari-os/gnome
 
     steps:
       - name: Checkout repository
