@@ -1,0 +1,71 @@
+name: 'Generate Tags'
+description: 'Generate tags for image builds'
+inputs:
+  event_name:
+    description: 'The name of the event that triggered the workflow'
+    required: true
+  pr_number:
+    description: 'The pull request number (if applicable)'
+    required: false
+  sha:
+    description: 'The commit SHA'
+    required: true
+  fedora_release:
+    description: 'Fedora release no.'
+    required: true
+outputs:
+  alias_tags:
+    description: 'Generated alias tags'
+    value: ${{ steps.generate-tags.outputs.alias_tags }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Generate tags
+      id: generate-tags
+      shell: bash
+      run: |
+        # Generate a timestamp for creating an image version history
+        TIMESTAMP="$(date +%Y%m%d)"
+        COMMIT_TAGS=()
+        BUILD_TAGS=()
+
+        # Have tags for tracking builds during pull request
+        if [[ "${{ inputs.event_name }}" == "pull_request" ]]; then
+          # Only include PR number as tag
+          COMMIT_TAGS+=("pr-${{ inputs.pr_number }}")
+        else
+          # Append commit SHA for non-PR events
+          SHA_SHORT="${{ inputs.sha }}::7"
+          COMMIT_TAGS+=("${SHA_SHORT}")
+        fi
+
+        # Append matching timestamp tags to keep a version history
+        FEDORA_RELEASE="${{ inputs.fedora_release }}"
+        BUILD_TAGS+=("${FEDORA_RELEASE}")
+        BUILD_TAGS+=("${TIMESTAMP}")
+
+        # If triggered by a pull request, generate commit-based tags
+        if [[ "${{ inputs.event_name }}" == "pull_request" ]]; then
+          echo "Generated the following commit tags: "
+          for TAG in "${COMMIT_TAGS[@]}"; do
+            echo "${TAG}"
+          done
+          alias_tags=("${COMMIT_TAGS[@]}")
+        else
+          alias_tags=("${BUILD_TAGS[@]}")
+        fi
+
+        # Print generated build tags
+        echo "Generated the following build tags: "
+        for TAG in "${BUILD_TAGS[@]}"; do
+          echo "${TAG}"
+        done
+
+        # Set the output for alias_tags
+        echo "alias_tags=${alias_tags[*]}" >> $GITHUB_OUTPUT
+
+    - name: Debug Tags
+      shell: bash
+      run: |
+        echo "Alias Tags: ${{ steps.generate-tags.outputs.alias_tags }}"

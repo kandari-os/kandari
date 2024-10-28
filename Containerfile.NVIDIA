@@ -1,0 +1,25 @@
+ARG FEDORA_RELEASE="${FEDORA_RELEASE:-latest}"
+ARG BASE_IMAGE="${BASE_IMAGE:-ghcr.io/kandari-os/gnome}"
+ARG BASE_IMAGE_FULL=${BASE_IMAGE}:${FEDORA_RELEASE}
+ARG NVIDIA_AKMODS_IMAGE=ghcr.io/kandari-os/akmods/nvidia
+ARG NVIDIA_AKMODS_TAG="${NVIDIA_AKMODS_TAG:-latest}"
+
+FROM ${NVIDIA_AKMODS_IMAGE}:${NVIDIA_AKMODS_TAG} as akmods-nvidia
+
+FROM ${BASE_IMAGE_FULL} as base-nvidia
+
+COPY system-files/nvidia /
+COPY --chmod=0755 scripts /tmp/scripts
+
+COPY --from=akmods-nvidia /rpms /tmp/akmods/rpms
+COPY --from=akmods-nvidia /info /tmp/akmods/info
+COPY --from=akmods-nvidia /scripts /tmp/akmods/scripts
+
+RUN chmod +x /tmp/akmods/scripts/*.sh && \
+  chmod +x /tmp/scripts/*.sh && \
+  /tmp/akmods/scripts/00-preinstall.sh && \
+  /tmp/akmods/scripts/01-install.sh && \
+  /tmp/akmods/scripts/02-postinstall.sh && \
+  /tmp/scripts/build-initramfs.sh --version ${FEDORA_RELEASE} --base ${BASE_IMAGE} && \
+  rm -rf /var/* /tmp/* && \
+  ostree container commit

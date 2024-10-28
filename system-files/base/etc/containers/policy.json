@@ -1,0 +1,67 @@
+{
+    "default": [
+        {
+            "type": "reject"
+        }
+    ],
+    "transports": {
+        "docker": {
+            "ghcr.io/kandari-os/kandari": [
+                {
+                    "type": "sigstoreSigned",
+                    "keyPath": "/etc/pki/containers/kandari.pub",
+                    "signedIdentity": {
+                        "type": "matchRepository"
+                    }
+                }
+            ],
+            "registry.access.redhat.com": [
+                {
+                    "type": "signedBy",
+                    "keyType": "GPGKeys",
+                    "keyPath": "/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release"
+                }
+            ],
+            "registry.redhat.io": [
+                {
+                    "type": "signedBy",
+                    "keyType": "GPGKeys",
+                    "keyPath": "/etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release"
+                }
+            ],
+            "": [
+                {
+                    "type": "insecureAcceptAnything"
+                }
+            ]
+        },
+        "containers-storage": {
+            "": [
+                {
+                    "type": "insecureAcceptAnything"
+                }
+            ]
+        },
+        "docker-daemon": {
+            "": [
+                {
+                    "type": "insecureAcceptAnything"
+                }
+            ]
+        },
+        "oci": {
+            "": [
+                {
+                    "type": "insecureAcceptAnything"
+                }
+            ]
+        },
+        "oci-archive": {
+            "": [
+                {
+                    "type": "insecureAcceptAnything"
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,3 @@
+docker:                                                                         
+  ghcr.io/kandari-os/kandari:                                                              
+    use-sigstore-attachments: true
