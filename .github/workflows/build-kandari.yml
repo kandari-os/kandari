@@ -5,7 +5,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: '00 13 * * *'  # 7:00 PM Dhaka time (UTC+6) everyday
+    - cron: '00 06 * * *'  # 12:00 PM Dhaka time (UTC+6) everyday
   push:
     branches:
       - main
