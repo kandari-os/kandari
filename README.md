@@ -4,25 +4,31 @@
 - [বাংলা](README.bn.md)
 
 # Kandari OS
-[![Build Kandari Images](https://github.com/tazihad/kandari/actions/workflows/build-kandari.yml/badge.svg)](https://github.com/tazihad/kandari/actions/workflows/build-kandari.yml)
+[![Build Kandari Images](https://github.com/kandari-os/kandari/actions/workflows/build-kandari.yml/badge.svg)](https://github.com/kandari-os/kandari/actions/workflows/build-kandari.yml)
 
 Kandarai OS based on Fedora Atomic.
 
-**NOTE**: Replace `latest` with `40` or `41` to stay with Fedora Release.
+**NOTE**: Replace `latest` with `41` or `42` to stay with Fedora Release.
 
 ## Installation  
 There's two images. `Kandari` and `Kandari NVIDIA`. Use one according to your hardware.  
+
+#### Easiest method. Switch using `bootc`. (Supported from Fedora 42):
+```
+sudo bootc switch --enforce-container-sigpolicy ghcr.io/kandari-os/kde-nvidia:41
+```
+
 #### Simple method
 To rebase an existing atomic Fedora installation to the latest build:  
 
 **Unsigned build:** ⚠️    
 - First rebase to the unsigned **Kandari** image, to get the proper signing keys and policies installed:
   ```
-  rpm-ostree rebase ostree-unverified-registry:ghcr.io/tazihad/kandari-kde:latest
+  rpm-ostree rebase ostree-unverified-registry:ghcr.io/kandari-os/kde:latest
   ```
 - **Nvidia Kandari** unsigned build:
   ```
-  rpm-ostree rebase ostree-unverified-registry:ghcr.io/tazihad/kandari-kde-nvidia:latest
+  rpm-ostree rebase ostree-unverified-registry:ghcr.io/kandari-os/kde-nvidia:latest
   ```
 - Reboot to complete the rebase:
   ```
@@ -32,11 +38,11 @@ To rebase an existing atomic Fedora installation to the latest build:
 - Then rebase to the signed **Kandari** image, like so:
 
   ```
-  rpm-ostree rebase ostree-image-signed:docker://ghcr.io/tazihad/kandari-kde:latest
+  rpm-ostree rebase ostree-image-signed:docker://ghcr.io/kandari-os/kde:latest
   ```
 - Or rebase to **Nvidia Kandari** Signed image:
   ```
-  rpm-ostree rebase ostree-image-signed:docker://ghcr.io/tazihad/kandari-kde-nvidia:latest
+  rpm-ostree rebase ostree-image-signed:docker://ghcr.io/kandari-os/kde-nvidia:latest
   ```
 - Reboot again to complete the installation
   ```
@@ -47,7 +53,7 @@ Install **signed** image without rebasing to **unsigned** image.
 - Install the public key:
   ```
   sudo mkdir -p /etc/pki/containers
-  curl -O "https://raw.githubusercontent.com/tazihad/kandari/main/kandari.pub" -o kandari.pub
+  curl -O "https://raw.githubusercontent.com/kandari-os/kandari/main/kandari.pub" -o kandari.pub
   sudo cp kandari.pub /etc/pki/containers/
   sudo restorecon -RFv /etc/pki/containers
   ```
@@ -55,17 +61,17 @@ Install **signed** image without rebasing to **unsigned** image.
   Create and edit the configuration file for your registry:
   ```
   sudo mkdir -p /etc/containers/registries.d
-  sudo nano /etc/containers/registries.d/ghcr.io-tazihad-kandari.yaml
+  sudo nano /etc/containers/registries.d/ghcr.io-kandari-os-kandari.yaml
   ```
   Add the following content:
   ```
   docker:
-    ghcr.io/tazihad/kandari:
+    ghcr.io/kandari-os/kandari:
       use-sigstore-attachments: true
   ```
   Save the file and then run:
   ```
-  sudo restorecon -RFv /etc/containers/registries.d/ghcr.io-tazihad-kandari.yaml
+  sudo restorecon -RFv /etc/containers/registries.d/ghcr.io-kandari-os-kandari.yaml
   ```
 - Set up the policy:
   Create a policy file and add the following content:
@@ -83,7 +89,7 @@ Install **signed** image without rebasing to **unsigned** image.
       ],
       "transports": {
           "docker": {
-              "ghcr.io/tazihad/kandari": [
+              "ghcr.io/kandari-os/kandari": [
                   {
                       "type": "sigstoreSigned",
                       "keyPath": "/etc/pki/containers/kandari.pub",
@@ -111,6 +117,6 @@ Install **signed** image without rebasing to **unsigned** image.
 ## Verification  
 These images are signed with Sigstore's cosign. You can verify the signature by downloading the `kandari.pub` file from this repo and running the following command:
 ```
-cosign verify --key https://raw.githubusercontent.com/tazihad/kandari/main/kandari.pub ghcr.io/tazihad/kandari-kde:latest
+cosign verify --key https://raw.githubusercontent.com/kandari-os/kandari/main/kandari.pub ghcr.io/kandari-os/kandari-kde:latest
 ```
 
