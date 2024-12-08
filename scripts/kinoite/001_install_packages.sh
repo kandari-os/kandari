@@ -4,7 +4,6 @@ set -euox pipefail
 
 # Define packages to install
 packages=(
-  plasma-workspace-x11
   qt6-qtimageformats
   fcitx5
   kcm-fcitx5
