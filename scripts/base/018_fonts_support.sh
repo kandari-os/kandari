@@ -18,7 +18,7 @@ fi
 
 # Create destination directory with root privileges
 echo "Creating destination directory at $DEST_DIR..."
-sudo mkdir -p "$DEST_DIR"
+mkdir -p "$DEST_DIR"
 
 # Download the repository as a zip file
 echo "Downloading win10-fonts repository (size: ~187MB)..."
@@ -39,7 +39,7 @@ fi
 
 # Move fonts to the destination directory with root privileges
 echo "Moving fonts to $DEST_DIR..."
-sudo mv /tmp/win10-fonts-main/* "$DEST_DIR"
+mv /tmp/win10-fonts-main/* "$DEST_DIR"
 if [ $? -ne 0 ]; then
     echo "Error: Failed to move fonts to $DEST_DIR."
     rm -f "$ZIP_FILE"
@@ -54,7 +54,7 @@ rm -rf "/tmp/win10-fonts-main"
 
 # Refresh font cache
 echo "Refreshing font cache..."
-sudo fc-cache -fv > /dev/null 2>&1
+fc-cache -fv > /dev/null 2>&1
 if [ $? -ne 0 ]; then
     echo "Error: Failed to refresh font cache."
     exit 1
