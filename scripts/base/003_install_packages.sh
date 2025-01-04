@@ -10,6 +10,7 @@ packages=(
   ffmpeg-libs
   htop
   podman-compose
+  trash-cli
   zsh
 )
 
