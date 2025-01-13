@@ -13,41 +13,18 @@ Kandarai OS based on Fedora Atomic.
 ## Installation  
 There's two images. `Kandari` and `Kandari NVIDIA`. Use one according to your hardware.  
 
-#### Easiest method. Switch using `bootc`. (Supported from Fedora 42):
+#### Easiest method. 
+Switch using `bootc`. (Supported from Fedora 42):
+
+```
+sudo bootc switch ghcr.io/kandari-os/kde-nvidia:41
+```
+Reboot. Than switch to signed build
 ```
 sudo bootc switch --enforce-container-sigpolicy ghcr.io/kandari-os/kde-nvidia:41
 ```
 
-#### Simple method
-To rebase an existing atomic Fedora installation to the latest build:  
 
-**Unsigned build:** ⚠️    
-- First rebase to the unsigned **Kandari** image, to get the proper signing keys and policies installed:
-  ```
-  rpm-ostree rebase ostree-unverified-registry:ghcr.io/kandari-os/kde:latest
-  ```
-- **Nvidia Kandari** unsigned build:
-  ```
-  rpm-ostree rebase ostree-unverified-registry:ghcr.io/kandari-os/kde-nvidia:latest
-  ```
-- Reboot to complete the rebase:
-  ```
-  systemctl reboot
-  ```  
-**Signed build:** ✔️  
-- Then rebase to the signed **Kandari** image, like so:
-
-  ```
-  rpm-ostree rebase ostree-image-signed:docker://ghcr.io/kandari-os/kde:latest
-  ```
-- Or rebase to **Nvidia Kandari** Signed image:
-  ```
-  rpm-ostree rebase ostree-image-signed:docker://ghcr.io/kandari-os/kde-nvidia:latest
-  ```
-- Reboot again to complete the installation
-  ```
-  systemctl reboot
-  ```
 #### Advanced method  
 Install **signed** image without rebasing to **unsigned** image.  
 - Install the public key:
@@ -61,7 +38,7 @@ Install **signed** image without rebasing to **unsigned** image.
   Create and edit the configuration file for your registry:
   ```
   sudo mkdir -p /etc/containers/registries.d
-  sudo nano /etc/containers/registries.d/ghcr.io-kandari-os-kandari.yaml
+  sudo nano /etc/containers/registries.d/ghcr.io-kandari.yaml
   ```
   Add the following content:
   ```
@@ -71,7 +48,7 @@ Install **signed** image without rebasing to **unsigned** image.
   ```
   Save the file and then run:
   ```
-  sudo restorecon -RFv /etc/containers/registries.d/ghcr.io-kandari-os-kandari.yaml
+  sudo restorecon -RFv /etc/containers/registries.d/ghcr.io-kandari.yaml
   ```
 - Set up the policy:
   Create a policy file and add the following content:
