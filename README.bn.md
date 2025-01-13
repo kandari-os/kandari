@@ -4,7 +4,7 @@
 - [বাংলা](README.bn.md)
 
 # কান্ডারী ওএস
-[![Build Kandari Images](https://github.com/tazihad/kandari/actions/workflows/build-kandari.yml/badge.svg)](https://github.com/tazihad/kandari/actions/workflows/build-kandari.yml)
+[![Build Kandari Images](https://github.com/kandari-os/kandari/actions/workflows/build-kandari.yml/badge.svg)](https://github.com/kandari-os/kandari/actions/workflows/build-kandari.yml)
 
 কান্ডারী ওএস ফেডোরা অ্যাটমিকের উপর ভিত্তি করে তৈরি।
 
