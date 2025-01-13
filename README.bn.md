@@ -17,11 +17,11 @@
 **আনসাইন্ড বিল্ড:** ⚠️    
 - আনসাইন্ড বিল্ড রিবেস করুন প্রয়োজনীয় কিছু সাইনিং কি ইন্সটল করার জন্য।:
   ```
-  rpm-ostree rebase ostree-unverified-registry:ghcr.io/tazihad/kandari:latest
+  sudo bootc switch ghcr.io/kandari-os/kde:41
   ```
 - **Nvidia কান্ডারী** আনসাইন্ড বিল্ড:
   ```
-  rpm-ostree rebase ostree-unverified-registry:ghcr.io/tazihad/kandari-nvidia:latest
+  sudo bootc switch ghcr.io/kandari-os/kde-nvidia:41
   ```
 - রিস্টার্ট করুন কম্পিউটার:
   ```
@@ -30,11 +30,11 @@
 **সাইন্ড বিল্ড:** ✔️  
 - সাইনড **Kandari** ইমেজে রিবেস করুন:  
   ```
-  rpm-ostree rebase ostree-image-signed:docker://ghcr.io/tazihad/kandari:latest
+  sudo bootc switch --enforce-container-sigpolicy ghcr.io/kandari-os/kde:41
   ```
 - **Nvidia কান্ডারী** সাইন্ড বিল্ড:
   ```
-  rpm-ostree rebase ostree-image-signed:docker://ghcr.io/tazihad/kandari-nvidia:latest
+  sudo bootc switch --enforce-container-sigpolicy ghcr.io/kandari-os/kde-nvidia:41
   ```
 - রিস্টার্ট করুন কম্পিউটার
   ```
@@ -46,7 +46,7 @@
 - পাবলিক কী ইনস্টল করুন:
   ```
   sudo mkdir -p /etc/pki/containers
-  curl -O "https://raw.githubusercontent.com/tazihad/kandari/main/kandari.pub" -o kandari.pub
+  curl -O "https://raw.githubusercontent.com/kandari-os/kandari/main/kandari.pub" -o kandari.pub
   sudo cp kandari.pub /etc/pki/containers/
   sudo restorecon -RFv /etc/pki/containers
   ```
@@ -54,17 +54,17 @@
   রেজিস্ট্রির জন্য একটি কনফিগারেশন ফাইল তৈরি করুন:
   ```
   sudo mkdir -p /etc/containers/registries.d
-  sudo nano /etc/containers/registries.d/ghcr.io-tazihad-kandari.yaml
+  sudo nano /etc/containers/registries.d/ghcr.io-kandari.yaml
   ```
   নিচের বিষয়বস্তু যোগ করুন:
   ```
   docker:
-    ghcr.io/tazihad/kandari:
+    ghcr.io/kandari-os/kandari:
       use-sigstore-attachments: true
   ```
   ফাইলটি সেভ করুন এবং তারপর টারমিনাল থেকে:
   ```
-  sudo restorecon -RFv /etc/containers/registries.d/ghcr.io-tazihad-kandari.yaml
+  sudo restorecon -RFv /etc/containers/registries.d/ghcr.io-kandari.yaml
   ```
 - পলিসি ঠিক করুন:
   নিচের ফাইল সেভ করুন:
@@ -82,7 +82,7 @@
       ],
       "transports": {
           "docker": {
-              "ghcr.io/tazihad/kandari": [
+              "ghcr.io/kandari-os/kandari": [
                   {
                       "type": "sigstoreSigned",
                       "keyPath": "/etc/pki/containers/kandari.pub",
@@ -110,5 +110,5 @@
 ## ভেরিফাই করুন  
 গিটহাব থেকে `kandari.pub` ডাউনলোড করুন তারপর টারমিনাল থেকে ভেরিফাই করুন:
 ```
-cosign verify --key https://raw.githubusercontent.com/tazihad/kandari/main/kandari.pub ghcr.io/tazihad/kandari-kde:latest
+cosign verify --key https://raw.githubusercontent.com/kandari-os/kandari/main/kandari.pub ghcr.io/kandari-os/kandari-kde:latest
 ```
