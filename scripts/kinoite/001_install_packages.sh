@@ -4,7 +4,6 @@ set -euox pipefail
 
 # Define packages to install
 packages=(
-  qt6-qtimageformats
   fcitx5
   kcm-fcitx5
 )
