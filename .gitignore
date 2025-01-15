@@ -2,3 +2,12 @@
 **/.directory
 cosign.key
 kandari.key
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# JetBrains IDEs
+.idea/
+*.iml
+
