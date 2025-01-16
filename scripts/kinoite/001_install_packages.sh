@@ -6,7 +6,6 @@ set -euox pipefail
 packages=(
   fcitx5
   kcm-fcitx5
-  plasma-workspace-x11
 )
 
 # Function to install packages
