@@ -29,11 +29,8 @@ curl -L -o "$DOWNLOAD_PATH" "$URL"
 # Verify the download
 if [ -f "$DOWNLOAD_PATH" ]; then
     echo "Download complete. Installing the package..."
-    sudo dnf install -y "$DOWNLOAD_PATH"
-
-    # Prevent automatic updates
-    sudo dnf versionlock add fcitx5
-    echo "Installation complete. Version locked to prevent updates."
+    rpm-ostree install -y "$DOWNLOAD_PATH"
+    echo "Package installed successfully."
 else
     echo "Download failed. Please check the URL or network connection."
     exit 1
