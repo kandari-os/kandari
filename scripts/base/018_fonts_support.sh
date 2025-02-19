@@ -2,8 +2,6 @@
 
 set -euox pipefail
 
-#!/bin/bash
-
 ############################## MS FONTS ######################################
 # Define variables
 REPO_URL="https://github.com/tazihad/win10-fonts/archive/refs/heads/main.zip"
