@@ -6,7 +6,6 @@ set -euox pipefail
 packages=(
   fcitx5
   kcm-fcitx5
-  maliit-keyboard
 )
 
 # Function to install packages
