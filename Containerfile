@@ -1,6 +1,6 @@
 ARG FEDORA_RELEASE="${FEDORA_RELEASE:-40}"
 ARG BASE_IMAGE="${BASE_IMAGE:-silverblue}"
-ARG IMAGE_REGISTRY=quay.io/fedora-ostree-desktops
+ARG IMAGE_REGISTRY=quay.io/fedora
 ARG FEDORA_IMAGE=${IMAGE_REGISTRY}/${BASE_IMAGE}:${FEDORA_RELEASE}
 
 # Inheriting main image from Fedora source
