@@ -6,6 +6,7 @@ set -euox pipefail
 packages=(
   bat
   distrobox
+  eza
   fastfetch
   ffmpeg
   ffmpeg-libs
