@@ -9,6 +9,7 @@ packages=(
   ffmpeg
   ffmpeg-libs
   htop
+  mesa-va-drivers-freeworld
   podman-compose
   trash-cli
   zsh
