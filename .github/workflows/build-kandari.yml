@@ -155,7 +155,7 @@ jobs:
     strategy:
       matrix:
         fedora_release: [41] ###NOTE: example - fedora_release: [40, 41]
-        edition: [kde, gnome]
+        edition: [kde, gnome, budgie]
         variant: [nvidia]
         include:
           - edition: kde
@@ -166,6 +166,10 @@ jobs:
             containerfile: Containerfile.NVIDIA
             image_name: gnome-nvidia
             base_name: ghcr.io/kandari-os/gnome
+          - edition: budgie
+            containerfile: Containerfile.NVIDIA
+            image_name: budgie-nvidia
+            base_name: ghcr.io/kandari-os/budgie  
 
     steps:
       - name: Checkout repository
