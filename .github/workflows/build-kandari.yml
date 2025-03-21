@@ -40,10 +40,12 @@ jobs:
             containerfile: Containerfile
             image_name: kde
             base_name: kinoite
+            source-image: quay.io/fedora/fedora-kinoite
           - edition: gnome
             containerfile: Containerfile
             image_name: gnome
             base_name: silverblue
+            source-image: quay.io/fedora/fedora-silverblue
 
     steps:
       - name: Checkout repository
