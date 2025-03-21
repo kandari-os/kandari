@@ -4,7 +4,9 @@ set -euox pipefail
 
 # Define packages to install
 packages=(
+  bat
   distrobox
+  eza
   fastfetch
   ffmpeg
   ffmpeg-libs
