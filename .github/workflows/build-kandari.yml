@@ -33,7 +33,7 @@ jobs:
     strategy:
       matrix:
         fedora_release: [41]  # Fedora release matrix ### NOTE: example - fedora_release: [40, 41]
-        edition: [kde, gnome]
+        edition: [kde, gnome, budgie]
         variant: [regular]
         include:
           - edition: kde
@@ -46,6 +46,11 @@ jobs:
             image_name: gnome
             base_name: silverblue
             source-image: quay.io/fedora/fedora-silverblue
+          - edition: budgie
+            containerfile: Containerfile
+            image_name: budgie
+            base_name: budgie    
+            
 
     steps:
       - name: Checkout repository
