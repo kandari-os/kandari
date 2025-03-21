@@ -4,6 +4,7 @@ set -euox pipefail
 
 # Define packages to install
 packages=(
+  bat
   distrobox
   fastfetch
   ffmpeg
