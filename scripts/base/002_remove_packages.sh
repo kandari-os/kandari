@@ -4,7 +4,6 @@ set -euox pipefail
 
 # Define packages to uninstall
 packages=(
-  cat
   ffmpeg-free
   firefox
   firefox-langpacks
