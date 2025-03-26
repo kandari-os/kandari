@@ -1,10 +1,16 @@
+[![Build Kandari Images](https://github.com/kandari-os/kandari/actions/workflows/build-kandari.yml/badge.svg)](https://github.com/kandari-os/kandari/actions/workflows/build-kandari.yml)
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/kandari-os/kandari/refs/heads/main/assets/logo.png" 
+       alt="Kandari OS Logo" width="100">
+</div>
+
 ## বিভিন্ন ভাষায় পড়ুন
 
 - [English](README.md)
 - [বাংলা](README.bn.md)
 
 # কান্ডারী ওএস
-[![Build Kandari Images](https://github.com/kandari-os/kandari/actions/workflows/build-kandari.yml/badge.svg)](https://github.com/kandari-os/kandari/actions/workflows/build-kandari.yml)
 
 কান্ডারী ওএস ফেডোরা অ্যাটমিকের উপর ভিত্তি করে তৈরি।
 

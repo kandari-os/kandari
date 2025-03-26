@@ -1,5 +1,11 @@
 [![Build Kandari Images](https://github.com/kandari-os/kandari/actions/workflows/build-kandari.yml/badge.svg)](https://github.com/kandari-os/kandari/actions/workflows/build-kandari.yml)
 
+<div align="center">
+  <img src="https://raw.githubusercontent.com/kandari-os/kandari/refs/heads/main/assets/logo.png" 
+       alt="Kandari OS Logo" width="100">
+</div>
+
+
 ## Available Languages
 
 - [English](README.md)
