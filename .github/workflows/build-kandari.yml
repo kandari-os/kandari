@@ -19,7 +19,7 @@ env:
   MY_IMAGE_DESC: "Kandari OS"
   IMAGE_REGISTRY: "ghcr.io/${{ github.repository_owner }}"  # do not edit
   PATCH_VERSION: "0"
-  FEDORA_SUPPORT_RELEASE: "41"  # Global Fedora releases ### NOTE: example - [FEDORA_SUPPORT_RELEASE: "40 41"]
+  FEDORA_SUPPORT_RELEASE: "41, 42"  # Global Fedora releases ### NOTE: example - [FEDORA_SUPPORT_RELEASE: "40 41"]
 
 jobs:
   build_regular_images:
@@ -32,7 +32,7 @@ jobs:
 
     strategy:
       matrix:
-        fedora_release: [41]  # Fedora release matrix ### NOTE: example - fedora_release: [40, 41]
+        fedora_release: [41, 42]  # Fedora release matrix ### NOTE: example - fedora_release: [40, 41]
         edition: [kde, gnome]
         variant: [regular]
         include:
@@ -147,7 +147,7 @@ jobs:
 
     strategy:
       matrix:
-        fedora_release: [41] ###NOTE: example - fedora_release: [40, 41]
+        fedora_release: [41, 42] ###NOTE: example - fedora_release: [40, 41]
         edition: [kde, gnome]
         variant: [nvidia]
         include:
