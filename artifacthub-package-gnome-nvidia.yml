@@ -1,0 +1,20 @@
+name: gnome-nvidia
+repository: kandari-os
+displayName: "Kandari GNOME (NVIDIA)"
+description: "A custom GNOME-based image for Kandari OS with NVIDIA support"
+keywords:
+  - gnome
+  - kandari-os
+  - nvidia
+  - linux
+links:
+  - name: GitHub Repository
+    url: https://github.com/kandari-os/kandari
+provider:
+  name: Kandari OS
+container:
+  image: ghcr.io/kandari-os/gnome-nvidia
+  tags:
+    - "41"
+    - "42"
+    - "latest"
