@@ -1,0 +1,37 @@
+version: "41"  # Change this for each tag
+name: "kde"
+displayName: "Kandari KDE"
+createdAt: "2025-03-27T00:00:00Z"  # Set to the image creation date
+description: "KDE-based OCI image for Kandari OS"
+license: "MIT"
+homeURL: "https://github.com/kandari-os/kandari"
+appVersion: "41"  # Match with the version
+containersImages:
+  - name: "latest"
+    image: "ghcr.io/kandari-os/kde:latest"
+    platforms:
+      - "linux/amd64"
+      - "linux/arm64"
+  - name: "40"
+    image: "ghcr.io/kandari-os/kde:40"
+    platforms:
+      - "linux/amd64"
+  - name: "41"
+    image: "ghcr.io/kandari-os/kde:41"
+    platforms:
+      - "linux/amd64"
+      - "linux/arm64"
+keywords:
+  - "kde"
+  - "oci"
+  - "kandari"
+links:
+  - name: "Source Code"
+    url: "https://github.com/kandari-os/kandari"
+  - name: "Image on GHCR"
+    url: "https://ghcr.io/kandari-os/kde"
+maintainers:
+  - name: "tazihad"
+    email: "tazihad@gmail.com"
+provider:
+  name: "Kandari OS"
