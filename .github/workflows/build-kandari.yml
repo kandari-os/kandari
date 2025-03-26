@@ -13,6 +13,7 @@ on:
       - '**/README*.md'
       - '**/LICENSE'
       - '.gitignore'
+      - 'artifacthub-repo.yml'
   workflow_dispatch:
 
 env:
