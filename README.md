@@ -1,10 +1,11 @@
+[![Build Kandari Images](https://github.com/kandari-os/kandari/actions/workflows/build-kandari.yml/badge.svg)](https://github.com/kandari-os/kandari/actions/workflows/build-kandari.yml)
+
 ## Available Languages
 
 - [English](README.md)
 - [বাংলা](README.bn.md)
 
 # Kandari OS
-[![Build Kandari Images](https://github.com/kandari-os/kandari/actions/workflows/build-kandari.yml/badge.svg)](https://github.com/kandari-os/kandari/actions/workflows/build-kandari.yml)
 
 Kandarai OS based on Fedora Atomic.
 
