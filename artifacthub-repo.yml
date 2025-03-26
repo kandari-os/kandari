@@ -1,8 +1,90 @@
-# This file is completely optional, but if you want to index your image on https://artifacthub.io/ you can
-# Sign up and add the Repository ID to the right field. Owners fields are optional.
-# Examples: https://artifacthub.io/packages/search?ts_query_web=ublue&sort=relevance&page=1
-
 repositoryID: db2afb2a-3b5f-477d-a49a-5aebb3109efe
 owners:
   - name: tazihad
     email: tazihad@gmail.com
+packages:
+  - name: kde
+    version: "latest"
+    displayName: "Kandari KDE"
+    description: "KDE-based OCI image for Kandari OS"
+    keywords:
+      - kde
+      - kandari
+      - oci
+    links:
+      - name: Source Code
+        url: https://github.com/kandari-os/kandari
+      - name: Image on GHCR
+        url: https://ghcr.io/kandari-os/kde
+    container:
+      image: oci://ghcr.io/kandari-os/kde
+      default: latest
+      platforms:
+        - tag: latest
+        - tag: 40
+        - tag: 41
+
+  - name: kde-nvidia
+    version: "latest"
+    displayName: "Kandari KDE (NVIDIA)"
+    description: "KDE-based OCI image for Kandari OS with NVIDIA support"
+    keywords:
+      - kde
+      - nvidia
+      - kandari
+      - oci
+    links:
+      - name: Source Code
+        url: https://github.com/kandari-os/kandari
+      - name: Image on GHCR
+        url: https://ghcr.io/kandari-os/kde-nvidia
+    container:
+      image: oci://ghcr.io/kandari-os/kde-nvidia
+      default: latest
+      platforms:
+        - tag: latest
+        - tag: 40
+        - tag: 41
+
+  - name: gnome
+    version: "latest"
+    displayName: "Kandari GNOME"
+    description: "GNOME-based OCI image for Kandari OS"
+    keywords:
+      - gnome
+      - kandari
+      - oci
+    links:
+      - name: Source Code
+        url: https://github.com/kandari-os/kandari
+      - name: Image on GHCR
+        url: https://ghcr.io/kandari-os/gnome
+    container:
+      image: oci://ghcr.io/kandari-os/gnome
+      default: latest
+      platforms:
+        - tag: latest
+        - tag: 40
+        - tag: 41
+
+  - name: gnome-nvidia
+    version: "latest"
+    displayName: "Kandari GNOME (NVIDIA)"
+    description: "GNOME-based OCI image for Kandari OS with NVIDIA support"
+    keywords:
+      - gnome
+      - nvidia
+      - kandari
+      - oci
+    links:
+      - name: Source Code
+        url: https://github.com/kandari-os/kandari
+      - name: Image on GHCR
+        url: https://ghcr.io/kandari-os/gnome-nvidia
+    container:
+      image: oci://ghcr.io/kandari-os/gnome-nvidia
+      default: latest
+      platforms:
+        - tag: latest
+        - tag: 40
+        - tag: 41
