@@ -9,7 +9,6 @@ packages=(
   fastfetch
   ffmpeg
   htop
-  mesa-va-drivers-freeworld
   podman-compose
   trash-cli
   zsh
