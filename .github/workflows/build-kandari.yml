@@ -34,7 +34,7 @@ jobs:
     strategy:
       matrix:
         fedora_release: [41, 42]  # Fedora release matrix ### NOTE: example - fedora_release: [40, 41]
-        edition: [kde, gnome]
+        edition: [kde, gnome, xfce]
         variant: [regular]
         include:
           - edition: kde
@@ -45,6 +45,10 @@ jobs:
             containerfile: Containerfile
             image_name: gnome
             base_name: silverblue
+          - edition: xfce
+            containerfile: Containerfile
+            image_name: xfce
+            base_name: xfce-atomic  
 
     steps:
       - name: Checkout repository
@@ -149,7 +153,7 @@ jobs:
     strategy:
       matrix:
         fedora_release: [41, 42] ###NOTE: example - fedora_release: [40, 41]
-        edition: [kde, gnome]
+        edition: [kde, gnome, xfce]
         variant: [nvidia]
         include:
           - edition: kde
@@ -160,6 +164,10 @@ jobs:
             containerfile: Containerfile.NVIDIA
             image_name: gnome-nvidia
             base_name: ghcr.io/kandari-os/gnome
+          - edition: xfce
+            containerfile: Containerfile.NVIDIA
+            image_name: xfce-nvidia
+            base_name: ghcr.io/kandari-os/xfce  
 
     steps:
       - name: Checkout repository

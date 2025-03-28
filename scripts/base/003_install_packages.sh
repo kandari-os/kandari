@@ -8,7 +8,6 @@ packages=(
   distrobox
   fastfetch
   ffmpeg
-  ffmpeg-libs
   htop
   mesa-va-drivers-freeworld
   podman-compose
