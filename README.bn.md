@@ -1,5 +1,5 @@
 [![Build Kandari Images](https://github.com/kandari-os/kandari/actions/workflows/build-kandari.yml/badge.svg)](https://github.com/kandari-os/kandari/actions/workflows/build-kandari.yml)
-[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/packages/search?org=kandari)](https://artifacthub.io/packages/search?org=kandari)
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/kandari-kde)](https://artifacthub.io/packages/search?org=kandari)
 
 <div align="center">
   <img src="https://raw.githubusercontent.com/kandari-os/kandari/refs/heads/main/assets/logo.png" 
