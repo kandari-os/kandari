@@ -11,6 +11,7 @@ packages=(
   htop
   podman-compose
   trash-cli
+  wl-clipboard
   zsh
 )
 
