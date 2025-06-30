@@ -107,6 +107,8 @@ cosign verify --key https://raw.githubusercontent.com/kandari-os/kandari/main/ka
 
 
 #### TODO
-- Block nouveau. Now it requires manual one time `sudo rpm-ostree kargs --append=rd.driver.blacklist=nouveau
-`
+- Block nouveau. Now it requires manual one time for NVIDIA drivers
+ ```
+sudo rpm-ostree kargs --append=rd.driver.blacklist=nouveau,nova_core --append=modprobe.blacklist=nouveau,nova_core
+```
 
