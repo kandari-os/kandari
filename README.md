@@ -105,3 +105,8 @@ These images are signed with Sigstore's cosign. You can verify the signature by 
 cosign verify --key https://raw.githubusercontent.com/kandari-os/kandari/main/kandari.pub ghcr.io/kandari-os/kandari-kde:latest
 ```
 
+
+#### TODO
+- Block nouveau. Now it requires manual one time `sudo rpm-ostree kargs --append=rd.driver.blacklist=nouveau
+`
+
