@@ -1,25 +1,42 @@
 ARG FEDORA_RELEASE="${FEDORA_RELEASE:-latest}"
 ARG BASE_IMAGE="${BASE_IMAGE:-ghcr.io/kandari-os/gnome}"
 ARG BASE_IMAGE_FULL=${BASE_IMAGE}:${FEDORA_RELEASE}
-ARG NVIDIA_AKMODS_IMAGE=ghcr.io/kandari-os/akmods/nvidia
-ARG NVIDIA_AKMODS_TAG="${NVIDIA_AKMODS_TAG:-latest}"
 
-FROM ${NVIDIA_AKMODS_IMAGE}:${NVIDIA_AKMODS_TAG} as akmods-nvidia
-
+# Start from your custom base image
 FROM ${BASE_IMAGE_FULL} as base-nvidia
 
+# Copy RPMs from upstream akmods image (used in the YAML version)
+COPY --from=ghcr.io/ublue-os/akmods-nvidia:main-42 /rpms /tmp/rpms
+
+# Optional: debug RPM copy
+RUN find /tmp/rpms
+
+# Install the ublue-os nvidia RPMs (like akmod + metapackage)
+RUN rpm-ostree install /tmp/rpms/ublue-os/ublue-os-nvidia*.rpm
+
+# Enable NVIDIA repo in toolkit and negativo17 repo
+RUN sed -i '0,/enabled=0/{s/enabled=0/enabled=1/}' /etc/yum.repos.d/nvidia-container-toolkit.repo && \
+    sed -i '0,/enabled=0/{s/enabled=0/enabled=1\npriority=90/}' /etc/yum.repos.d/negativo17-fedora-nvidia.repo
+
+# Install additional NVIDIA components (driver, utils, etc.)
+RUN rpm-ostree install \
+    /tmp/rpms/kmods/kmod-nvidia*.rpm \
+    libnvidia-fbc \
+    libva-nvidia-driver \
+    nvidia-driver \
+    nvidia-driver-cuda \
+    nvidia-modprobe \
+    nvidia-persistenced \
+    nvidia-settings \
+    nvidia-container-toolkit
+
+# Include your additional system files and scripts
 COPY system-files/nvidia /
 COPY --chmod=0755 scripts /tmp/scripts
 
-COPY --from=akmods-nvidia /rpms /tmp/akmods/rpms
-COPY --from=akmods-nvidia /info /tmp/akmods/info
-COPY --from=akmods-nvidia /scripts /tmp/akmods/scripts
+# Optionally run your initramfs/build scripts
+RUN /tmp/scripts/build-initramfs.sh --version ${FEDORA_RELEASE} --base ${BASE_IMAGE}
 
-RUN chmod +x /tmp/akmods/scripts/*.sh && \
-  chmod +x /tmp/scripts/*.sh && \
-  /tmp/akmods/scripts/00-preinstall.sh && \
-  /tmp/akmods/scripts/01-install.sh && \
-  /tmp/akmods/scripts/02-postinstall.sh && \
-  /tmp/scripts/build-initramfs.sh --version ${FEDORA_RELEASE} --base ${BASE_IMAGE} && \
-  rm -rf /var/* /tmp/* && \
-  ostree container commit
+# Clean up and finalize ostree layer
+RUN rm -rf /var/* /tmp/* && \
+    ostree container commit
