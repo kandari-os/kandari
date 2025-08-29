@@ -20,7 +20,7 @@ packages=(
 
 # Function to uninstall packages
 uninstall_packages() {
-  dnf remove "${packages[@]}"
+  dnf remove -y "${packages[@]}"
 }
 
 # Call the function to uninstall the packages

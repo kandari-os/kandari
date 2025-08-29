@@ -12,7 +12,7 @@ packages=(
 
 # Function to install packages
 install_packages() {
-  dnf install "${packages[@]}"
+  dnf install -y "${packages[@]}"
 }
 
 # Call the function to install the packages

@@ -9,7 +9,7 @@ sudo mv /tmp/home-paul4us-fedora-"${RELEASE}".repo \
 /etc/yum.repos.d/home:paul4us.repo
 
 # Install klassy from the repository
-dnf install klassy
+dnf install -y klassy
 
 # Remove the repository file after installation
 rm -f /etc/yum.repos.d/home:paul4us.repo
