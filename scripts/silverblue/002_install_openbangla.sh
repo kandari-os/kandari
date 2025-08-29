@@ -10,6 +10,6 @@ https://copr.fedorainfracloud.org/coprs/badshah/openbangla-keyboard/repo/fedora-
 mv /tmp/badshah-openbangla-keyboard-fedora-"${RELEASE}".repo \
 /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:badshah:openbangla-keyboard.repo
 
-rpm-ostree install ibus-openbangla
+dnf install ibus-openbangla
 
 rm -f /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:badshah:openbangla-keyboard.repo

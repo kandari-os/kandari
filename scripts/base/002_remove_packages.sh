@@ -20,7 +20,7 @@ packages=(
 
 # Function to uninstall packages
 uninstall_packages() {
-  rpm-ostree uninstall "${packages[@]}"
+  dnf remove "${packages[@]}"
 }
 
 # Call the function to uninstall the packages

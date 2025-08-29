@@ -10,7 +10,7 @@ packages=(
 
 # Function to install packages
 install_packages() {
-  rpm-ostree install "${packages[@]}"
+  dnf install "${packages[@]}"
 }
 
 # Call the function to install the packages
