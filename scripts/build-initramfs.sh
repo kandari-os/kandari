@@ -2,13 +2,14 @@
 
 set -oue pipefail
 
-if [ ! -f /usr/libexec/rpm-ostree/wrapped/dracut ]; then
-    rpm-ostree cliwrap install-to-root /
-fi
-
+# No need for rpm-ostree cliwrap, dracut is available directly
 KERNEL_SUFFIX=""
-QUALIFIED_KERNEL="$(rpm -qa | grep -P 'kernel-(|'"$KERNEL_SUFFIX"'-)(\d+\.\d+\.\d+)' | sed -E 's/kernel-(|'"$KERNEL_SUFFIX"'-)//')"
 
-/usr/libexec/rpm-ostree/wrapped/dracut --no-hostonly --kver "$QUALIFIED_KERNEL" --reproducible -v --add ostree -f "/lib/modules/$QUALIFIED_KERNEL/initramfs.img"
+# Find installed kernel version
+QUALIFIED_KERNEL="$(rpm -qa | grep -P "kernel(|${KERNEL_SUFFIX})(-\d+\.\d+\.\d+)" | sed -E "s/kernel(|${KERNEL_SUFFIX})-//")"
 
+# Generate initramfs for that kernel
+dracut --no-hostonly --kver "$QUALIFIED_KERNEL" --reproducible -v -f "/lib/modules/$QUALIFIED_KERNEL/initramfs.img"
+
+# Secure permissions
 chmod 0600 "/lib/modules/$QUALIFIED_KERNEL/initramfs.img"
