@@ -19,4 +19,5 @@ COPY --chmod=0755 scripts /tmp/scripts
 RUN /tmp/scripts/setup.sh --version ${FEDORA_RELEASE} --base ${BASE_IMAGE} && \
     /tmp/scripts/build-initramfs.sh --version ${FEDORA_RELEASE} --base ${BASE_IMAGE} && \
     dnf clean all && \
-    rm -rf /var/cache/dnf /var/lib/dnf /tmp/* /var/tmp/*
+    rm -rf /var/cache/dnf /var/lib/dnf /tmp/* /var/tmp/* \
+    ostree container commit
